@@ -10,7 +10,7 @@ public class CursorController : MonoBehaviour
     public float maxY;
 
     public float speed;
-    public float cooldown = 1;
+    public float cooldown = 0;
 
     public GameObject missile;
 
@@ -27,13 +27,16 @@ public class CursorController : MonoBehaviour
         newPos.y = Mathf.Clamp(newPos.y, minY, maxY);
         transform.position = newPos;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        cooldown -= Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Space) && cooldown <= 0)
         {
             var m = Instantiate(missile, missileSpawn, Quaternion.identity);
             var mc = m.GetComponent<MissileController>();
             mc.target = transform.position;
             mc.Init();
             m.SetActive(true);
+            cooldown = 0.3f;
         }
     }
 }

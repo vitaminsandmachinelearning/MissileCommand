@@ -1647,7 +1647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minX: -9.9
-  minY: -3.8
+  minY: -3
   maxX: 9.9
   maxY: 4.9
   speed: 7
